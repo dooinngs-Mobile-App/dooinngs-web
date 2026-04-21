@@ -1,0 +1,16 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.dooinngs.dooinngs",
+            "sha256_cert_fingerprints": [
+                "14:6D:E9:83:C8:BB:70:30:F2:1E:CB:5D:80:EF:85:23:44:E6:45:C9:4F:95:C7:A9:7B:A2:CC:5F:AA:04:15:38",
+                "38:BC:8F:B1:BA:7A:EE:A3:D1:1F:56:9C:78:8F:70:B8:F2:5F:E2:16:10:84:B6:FE:58:2E:41:50:4B:72:89:80",
+                "6A:48:67:B2:82:88:92:D2:9C:9B:32:87:12:29:39:3D:09:FF:04:CA:9D:CA:B8:A8:0D:71:2C:EE:11:29:7E:76"
+            ]
+        }
+    }
+]
