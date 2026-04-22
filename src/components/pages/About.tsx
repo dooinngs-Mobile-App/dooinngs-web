@@ -65,7 +65,7 @@ const About = () => {
 
             {/* Closing Statement */}
             <section className="mb-10 p-6 bg-gray-50 rounded-lg border-l-4 border-[#E41C4C]">
-              <p className="text-gray-700 leading-relaxed font-medium">
+              <p className="text-gray-700 leading-relaxed font-bold">
                 Dooinngs is built for <strong>convenience</strong>, <strong>trust</strong>, and <strong>getting things done properly</strong> because <strong>you matter</strong>!
               </p>
             </section>
