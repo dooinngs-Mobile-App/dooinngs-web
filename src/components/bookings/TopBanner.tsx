@@ -24,6 +24,7 @@ const TopBanner = () => {
           </div>
         </div>
         <div className="hidden sm:flex flex-row gap-2">
+          {/* App Store button - coming soon, uncomment when URL is available
           <button className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105">
             <Image
               src="/assets/icons/apple.svg"
@@ -41,7 +42,13 @@ const TopBanner = () => {
               </span>
             </span>
           </button>
-          <button className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105">
+          */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105"
+          >
             <Image
               src="/assets/icons/playstore.svg"
               alt="Play Store logo"
@@ -57,7 +64,7 @@ const TopBanner = () => {
                 Google Play
               </span>
             </span>
-          </button>
+          </a>
         </div>
         <button
           onClick={() => {
@@ -65,7 +72,7 @@ const TopBanner = () => {
             if (/iphone|ipad|ipod/.test(userAgent)) {
               window.open("https://apps.apple.com", "_blank");
             } else if (/android/.test(userAgent)) {
-              window.open("https://play.google.com", "_blank");
+              window.open("https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs", "_blank");
             } else {
               window.open("https://apps.apple.com", "_blank");
             }

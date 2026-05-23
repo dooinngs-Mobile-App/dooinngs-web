@@ -29,41 +29,32 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Center: Navigation Links */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-8">
-            <Link
-              href="/marketplace"
-              className="text-white text-sm lg:text-lg font-medium hover:underline transition-colors"
-            >
-              Marketplace
-            </Link>
-            <a
-              href="#"
-              className="text-white text-sm lg:text-lg font-medium hover:underline transition-colors"
-            >
-              FAQs
-            </a>
-            <a
-              href="#"
-              className="text-white text-sm lg:text-lg font-medium hover:underline transition-colors"
-            >
-              Support
-            </a>
-          </nav>
 
-          {/* Right side: Download button (desktop) and Mobile menu button */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Desktop Auth Buttons */}
-            {/* <div className="hidden md:flex items-center gap-2 sm:gap-4">
-              <button className="px-2 py-2 sm:px-3 sm:py-2 lg:px-4 lg:py-[10px] rounded-full bg-white text-[#E41C4C] text-xs sm:text-sm lg:text-base font-semibold hover:bg-gray-100 transition cursor-pointer">
-                Create an account
-              </button>
-              <button className="px-2 py-2 sm:px-3 sm:py-2 lg:px-4 lg:py-[10px] rounded-full border border-white text-white text-xs sm:text-sm lg:text-base font-semibold hover:bg-white hover:text-[#E41C4C] transition cursor-pointer">
-                Sign in
-              </button>
-            </div> */}
+          {/* Right side: Nav Links + Mobile menu button */}
+          <div className="flex items-center gap-4 lg:gap-8">
+            {/* Desktop Nav Links */}
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8">
+              <Link
+                href="/marketplace"
+                className="text-white text-sm lg:text-lg font-medium hover:underline transition-colors"
+              >
+                Marketplace
+              </Link>
+              <a
+                href="#"
+                className="text-white text-sm lg:text-lg font-medium hover:underline transition-colors"
+              >
+                FAQs
+              </a>
+              <a
+                href="#"
+                className="text-white text-sm lg:text-lg font-medium hover:underline transition-colors"
+              >
+                Support
+              </a>
+            </nav>
 
-            {/* Download Button (Desktop) */}
+            {/* Download Button (Desktop) - coming soon, uncomment when needed
             <a
               href="#download"
               className="hidden md:flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-full bg-gradient-to-r from-gray-900 to-black text-white text-sm lg:text-base font-semibold cursor-pointer hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -84,6 +75,7 @@ const Navbar = () => {
               </svg>
               Download Now
             </a>
+            */}
 
             {/* Mobile Menu Button */}
             <button
@@ -140,7 +132,7 @@ const Navbar = () => {
               </a>
             </nav>
 
-            {/* Mobile Download Button */}
+            {/* Mobile Download Button - coming soon, uncomment when needed
             <a
               href="#download"
               className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-gray-900 to-black text-white text-base font-semibold hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg"
@@ -162,6 +154,7 @@ const Navbar = () => {
               </svg>
               Download Now
             </a>
+            */}
 
             {/* Mobile Auth Buttons */}
             {/* <div className="flex flex-col gap-3">
