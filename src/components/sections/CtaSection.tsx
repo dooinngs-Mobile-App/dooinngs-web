@@ -15,6 +15,7 @@ const CtaSection = () => {
             connect with skilled professionals
           </p>
           <div className="flex flex-row gap-2 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto justify-center md:justify-start">
+            {/* App Store button - coming soon, uncomment when URL is available
             <button className="group flex items-center gap-2 sm:gap-4 px-2 sm:px-6 py-3 sm:py-4 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer w-full sm:w-auto min-w-[120px] sm:min-w-[200px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
               <img
                 src="/assets/icons/apple.svg"
@@ -30,7 +31,13 @@ const CtaSection = () => {
                 </span>
               </span>
             </button>
-            <button className="group flex items-center gap-2 sm:gap-4 px-2 sm:px-6 py-3 sm:py-4 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer w-full sm:w-auto min-w-[120px] sm:min-w-[200px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+            */}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 sm:gap-4 px-2 sm:px-6 py-3 sm:py-4 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer w-full sm:w-auto min-w-[120px] sm:min-w-[200px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
               <img
                 src="/assets/icons/playstore.svg"
                 alt="Play Store logo"
@@ -38,13 +45,13 @@ const CtaSection = () => {
               />
               <span className="flex flex-col items-start text-left">
                 <span className="text-[8px] sm:text-xs text-gray-300 font-medium tracking-wide uppercase">
-                  Coming soon to
+                  Get it on
                 </span>
                 <span className="text-xs sm:text-lg font-bold leading-tight tracking-tight">
                   Google Play
                 </span>
               </span>
-            </button>
+            </a>
           </div>
         </div>
 
