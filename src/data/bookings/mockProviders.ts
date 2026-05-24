@@ -103,21 +103,19 @@ export const mockProviders: Record<string, ProviderData> = {
     },
     reviews: [
       {
-        id: "1",
-        name: "Joshua Gavu",
-        avatar: "/assets/images/avatar-placeholder.png",
-        rating: 5,
-        time: "30 mins ago",
-        comment:
+        reviewer: "Joshua Gavu",
+        reviewer_photo: "/assets/images/avatar-placeholder.png",
+        score: 5,
+        created_at: "30 mins ago",
+        review:
           "Absolutely top-notch service! The cut was clean, stylish, and perfect. I highly recommend!",
       },
       {
-        id: "2",
-        name: "Joshua Gavu",
-        avatar: "/assets/images/avatar-placeholder.png",
-        rating: 5,
-        time: "30 mins ago",
-        comment:
+        reviewer: "Joshua Gavu",
+        reviewer_photo: "/assets/images/avatar-placeholder.png",
+        score: 5,
+        created_at: "30 mins ago",
+        review:
           "Absolutely top-notch service! The cut was clean, stylish, and perfect. I highly recommend!",
       },
     ],
@@ -191,12 +189,11 @@ export const mockProviders: Record<string, ProviderData> = {
     },
     reviews: [
       {
-        id: "1",
-        name: "Akua Mensah",
-        avatar: "/assets/images/avatar-placeholder.png",
-        rating: 5,
-        time: "1 hour ago",
-        comment: "Amazing service! Will definitely come back.",
+        reviewer: "Akua Mensah",
+        reviewer_photo: "/assets/images/avatar-placeholder.png",
+        score: 5,
+        created_at: "1 hour ago",
+        review: "Amazing service! Will definitely come back.",
       },
     ],
   },

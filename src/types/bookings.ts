@@ -12,12 +12,11 @@ export interface Category {
 }
 
 export interface Review {
-  id: string;
-  name: string;
-  avatar: string;
-  rating: number;
-  time: string;
-  comment: string;
+  reviewer: string;
+  reviewer_photo: string;
+  score: number;
+  review: string;
+  created_at: string;
 }
 
 export interface ProviderData {

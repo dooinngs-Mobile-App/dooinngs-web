@@ -85,7 +85,6 @@ apiClient.interceptors.response.use(
 export const getPublicBusiness = {
   key: (slug: string) => ["publicBusiness", slug],
   fn: async (slug: string) => {
-    // Use local API proxy to avoid CORS issues
     const { data } = await axios.get(`/api/business/${slug}`);
     return data;
   },
