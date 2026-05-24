@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface ProviderHeaderProps {
   name: string;
@@ -38,7 +39,7 @@ function ShareModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
       onClick={onClose}
     >
       <div
@@ -149,7 +150,10 @@ const ProviderHeader = ({ name, address, shareLink }: ProviderHeaderProps) => {
         </button>
       </div>
 
-      {showModal && <ShareModal name={name} shareLink={shareLink} onClose={() => setShowModal(false)} />}
+      {showModal && createPortal(
+        <ShareModal name={name} shareLink={shareLink} onClose={() => setShowModal(false)} />,
+        document.body
+      )}
     </>
   );
 };

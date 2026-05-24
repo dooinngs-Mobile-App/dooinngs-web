@@ -15,6 +15,7 @@ import {
   BusinessOwner,
   QRCodeSection,
   ProviderNotFound,
+  ReviewsSection,
 } from "@/components/bookings";
 import { getPublicBusiness } from "@/api/client";
 import { BusinessResponse } from "@/types/bookings";
@@ -56,6 +57,7 @@ export default function BusinessPageClient({ slug }: { slug: string }) {
     owner_photo,
     share_link,
     business_hours,
+    ratings,
   } = response.data;
 
   const homeService = service_types.includes("home");
@@ -125,8 +127,7 @@ export default function BusinessPageClient({ slug }: { slug: string }) {
                 avatar={owner_photo ?? undefined}
               />
 
-              {/* Reviews section - empty for now since API doesn't have reviews */}
-              {/* <ReviewsSection reviews={[]} /> */}
+              <ReviewsSection reviews={ratings} />
             </div>
 
             {/* Right Column - QR Code */}
