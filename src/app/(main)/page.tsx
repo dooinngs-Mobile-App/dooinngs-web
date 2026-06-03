@@ -5,10 +5,12 @@ import CtaSection from "@/components/sections/CtaSection";
 import Header from "@/components/sections/Header";
 import PaymentPartnershipSection from "@/components/sections/PaymentSection";
 import Footer from "@/components/layout/Footer";
+import PageLoader from "@/components/ui/PageLoader";
 
 export default function Home() {
   return (
     <div className="bg-white">
+      <PageLoader />
       <Header />
       <ArtisansSections />
       <BookService />
