@@ -23,10 +23,9 @@ const Header = () => {
               Need something done? Dooinngs connects you to skilled
               professionals to get a job done swiftly and effectively
             </p>
-            <div className="flex justify-center md:justify-start mt-4 sm:mt-6">
-              {/* App Store button - coming soon, uncomment when URL is available
+            <div className="flex gap-3 sm:gap-4 justify-center md:justify-start mt-4 sm:mt-6">
               <a
-                href="https://apps.apple.com/YOUR_APP_LINK_HERE"
+                href="https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 sm:gap-4 lg:gap-2 px-6 sm:px-6 py-3 sm:py-4 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer w-auto justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -45,7 +44,6 @@ const Header = () => {
                   </span>
                 </span>
               </a>
-              */}
               <a
                 href="https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs"
                 target="_blank"
