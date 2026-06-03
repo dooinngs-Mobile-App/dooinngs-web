@@ -19,6 +19,7 @@ import {
 } from "@/components/bookings";
 import { getPublicBusiness } from "@/api/client";
 import { BusinessResponse } from "@/types/bookings";
+import PageLoader from "@/components/ui/PageLoader";
 
 export default function BusinessPageClient({ slug }: { slug: string }) {
   const {
@@ -32,11 +33,7 @@ export default function BusinessPageClient({ slug }: { slug: string }) {
 
   // Loading state
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#E41C4C] border-t-transparent"></div>
-      </div>
-    );
+    return <PageLoader isLoading={isLoading} />;
   }
 
   // Error state
