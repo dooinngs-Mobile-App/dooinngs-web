@@ -7,10 +7,10 @@ export default function DownloadPage() {
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
 
-    // iOS - App Store coming soon, redirect to Play Store in the meantime
-    // if (/iphone|ipad|ipod/.test(userAgent)) {
-    //   window.location.href = "https://apps.apple.com";
-    // } else
+    // iOS - redirect to App Store
+    if (/iphone|ipad|ipod/.test(userAgent)) {
+      window.location.href = "https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424";
+    } else
     if (/android/.test(userAgent)) {
       // Android - redirect to Play Store
       // Replace with your actual Play Store link when available
@@ -40,9 +40,8 @@ export default function DownloadPage() {
         </p>
 
         <div className="space-y-3">
-          {/* App Store link - coming soon, uncomment when URL is available
           <a
-            href="https://apps.apple.com"
+            href="https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-black text-white rounded-xl hover:bg-gray-900 transition-colors"
@@ -58,7 +57,6 @@ export default function DownloadPage() {
               <span className="font-semibold">App Store</span>
             </span>
           </a>
-          */}
 
           <a
             href="https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs"

@@ -24,8 +24,12 @@ const TopBanner = () => {
           </div>
         </div>
         <div className="hidden sm:flex flex-row gap-2">
-          {/* App Store button - coming soon, uncomment when URL is available
-          <button className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105">
+          <a
+            href="https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105"
+          >
             <Image
               src="/assets/icons/apple.svg"
               alt="Apple logo"
@@ -41,8 +45,7 @@ const TopBanner = () => {
                 App Store
               </span>
             </span>
-          </button>
-          */}
+          </a>
           <a
             href="https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs"
             target="_blank"
@@ -70,11 +73,11 @@ const TopBanner = () => {
           onClick={() => {
             const userAgent = navigator.userAgent.toLowerCase();
             if (/iphone|ipad|ipod/.test(userAgent)) {
-              window.open("https://apps.apple.com", "_blank");
+              window.open("https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424", "_blank");
             } else if (/android/.test(userAgent)) {
               window.open("https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs", "_blank");
             } else {
-              window.open("https://apps.apple.com", "_blank");
+              window.open("https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424", "_blank");
             }
           }}
           className="sm:hidden px-4 py-2 bg-[#E41C4C] text-white rounded-full text-xs font-bold hover:bg-[#E41C4C]/80 transition-colors"
