@@ -20,6 +20,7 @@ import {
 import { getPublicBusiness } from "@/api/client";
 import { BusinessResponse } from "@/types/bookings";
 import PageLoader from "@/components/ui/PageLoader";
+import { openAppDownloadLink } from "@/lib/appDownload";
 
 export default function BusinessPageClient({ slug }: { slug: string }) {
   const {
@@ -135,7 +136,10 @@ export default function BusinessPageClient({ slug }: { slug: string }) {
         </div>
         {/* Sticky Bottom Button for Mobile */}
         <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100 lg:hidden z-50 mt-auto">
-          <button className="w-full py-3 bg-[#E41C4C] text-white rounded-full font-bold text-lg hover:bg-[#E41C4C]/90 transition-colors shadow-lg">
+          <button
+            onClick={() => openAppDownloadLink()}
+            className="w-full py-3 bg-[#E41C4C] text-white rounded-full font-bold text-lg hover:bg-[#E41C4C]/90 transition-colors shadow-lg"
+          >
             Download dooinngs to book
           </button>
         </div>
