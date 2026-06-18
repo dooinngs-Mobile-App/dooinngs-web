@@ -1,6 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import {
+  ANDROID_PLAY_STORE_URL,
+  IOS_APP_STORE_URL,
+  openAppDownloadLink,
+} from "@/lib/appDownload";
 
 const TopBanner = () => {
   return (
@@ -25,7 +30,7 @@ const TopBanner = () => {
         </div>
         <div className="hidden sm:flex flex-row gap-2">
           <a
-            href="https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424"
+            href={IOS_APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105"
@@ -47,7 +52,7 @@ const TopBanner = () => {
             </span>
           </a>
           <a
-            href="https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs"
+            href={ANDROID_PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-gray-900 to-black text-white cursor-pointer min-w-[120px] md:min-w-[140px] justify-center hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105"
@@ -70,16 +75,7 @@ const TopBanner = () => {
           </a>
         </div>
         <button
-          onClick={() => {
-            const userAgent = navigator.userAgent.toLowerCase();
-            if (/iphone|ipad|ipod/.test(userAgent)) {
-              window.open("https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424", "_blank");
-            } else if (/android/.test(userAgent)) {
-              window.open("https://play.google.com/store/apps/details?id=com.dooinngs.dooinngs", "_blank");
-            } else {
-              window.open("https://apps.apple.com/gh/app/dooinngs-discover-artisans/id6755143424", "_blank");
-            }
-          }}
+          onClick={() => openAppDownloadLink()}
           className="sm:hidden px-4 py-2 bg-[#E41C4C] text-white rounded-full text-xs font-bold hover:bg-[#E41C4C]/80 transition-colors"
         >
           Use App
