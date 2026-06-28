@@ -40,7 +40,7 @@ const ArtisansSections = () => {
         stopOnMouseEnter: false, // Don't stop on mouse enter
         stopOnFocusIn: false, // Don't stop on focus
       }),
-    ]
+    ],
   );
 
   // Disable all user interactions
@@ -55,9 +55,9 @@ const ArtisansSections = () => {
   }, [emblaApi]);
 
   return (
-    <section className="w-full py-20 md:py-45">
+    <section className="w-full py-14 md:py-[125px]">
       <div className=" mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-[#232323] font-figtree">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-[#232323] font-figtree">
           Make <span className="text-[#E41C4C]">money</span> as a skilled
           <br />
           artisan with <span className="text-[#E41C4C]">Dooinngs</span>
@@ -87,7 +87,7 @@ const ArtisansSections = () => {
                     />
                   </div>
                 </div>
-              )
+              ),
             )}
           </div>
         </div>
