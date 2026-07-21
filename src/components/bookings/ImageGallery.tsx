@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -38,6 +39,12 @@ const ImageGallery = ({ images = [], shareTitle, shareLink }: ImageGalleryProps)
   const total = hasImages ? displayImages.length : 5;
 
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleShare = useCallback(async () => {
     const url = shareLink ?? window.location.href;
@@ -52,6 +59,36 @@ const ImageGallery = ({ images = [], shareTitle, shareLink }: ImageGalleryProps)
       await navigator.clipboard.writeText(url).catch(() => {});
     }
   }, [shareTitle, shareLink]);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const showPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev === null ? null : (prev - 1 + displayImages.length) % displayImages.length
+    );
+  }, [displayImages.length]);
+  const showNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev === null ? null : (prev + 1) % displayImages.length
+    );
+  }, [displayImages.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") showPrev();
+      if (event.key === "ArrowRight") showNext();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxIndex, closeLightbox, showPrev, showNext]);
 
   return (
     <>
@@ -71,7 +108,8 @@ const ImageGallery = ({ images = [], shareTitle, shareLink }: ImageGalleryProps)
                   <img
                     src={imageUrl}
                     alt={`Gallery image ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    onClick={() => setLightboxIndex(index)}
+                    className="absolute inset-0 w-full h-full object-cover cursor-pointer"
                   />
                 </SwiperSlide>
               ))
@@ -111,34 +149,221 @@ const ImageGallery = ({ images = [], shareTitle, shareLink }: ImageGalleryProps)
       </div>
 
       {/* ── Desktop Grid ──────────────────────────────────────────────────── */}
-      <div className="hidden sm:grid grid-cols-4 gap-2 mb-8 rounded-xl overflow-hidden">
-        {/* Main large image */}
-        <div className="col-span-2 row-span-2 bg-gray-200 aspect-square relative">
-          {hasImages && displayImages[0] ? (
+      {!hasImages ? (
+        <div className="hidden sm:grid grid-cols-4 gap-2 mb-8 rounded-xl overflow-hidden">
+          <div className="col-span-2 row-span-2 bg-gray-200 aspect-square relative">
+            <ImagePlaceholder size="large" />
+          </div>
+          {[1, 2, 3, 4].map((index) => (
+            <div key={index} className="bg-gray-200 aspect-square relative">
+              <ImagePlaceholder size="small" />
+            </div>
+          ))}
+        </div>
+      ) : displayImages.length === 1 ? (
+        <div className="hidden sm:block mb-8 rounded-xl overflow-hidden">
+          <div className="aspect-[2/1] bg-gray-200 relative cursor-pointer" onClick={() => setLightboxIndex(0)}>
             <img
               src={displayImages[0]}
               alt="Main gallery image"
               className="absolute inset-0 w-full h-full object-cover"
             />
-          ) : (
-            <ImagePlaceholder size="large" />
-          )}
+          </div>
         </div>
-        {/* Smaller images */}
-        {[1, 2, 3, 4].map((index) => (
-          <div key={index} className="bg-gray-200 aspect-square relative">
-            {hasImages && displayImages[index] ? (
+      ) : displayImages.length === 2 ? (
+        <div className="hidden sm:grid grid-cols-2 gap-2 mb-8 rounded-xl overflow-hidden">
+          {displayImages.map((imageUrl, index) => (
+            <div
+              key={index}
+              className="aspect-square bg-gray-200 relative cursor-pointer"
+              onClick={() => setLightboxIndex(index)}
+            >
+              <img
+                src={imageUrl}
+                alt={`Gallery image ${index + 1}`}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      ) : displayImages.length === 3 ? (
+        <div className="hidden sm:grid grid-cols-2 gap-2 mb-8 rounded-xl overflow-hidden">
+          <div
+            className="row-span-2 aspect-square bg-gray-200 relative cursor-pointer"
+            onClick={() => setLightboxIndex(0)}
+          >
+            <img
+              src={displayImages[0]}
+              alt="Main gallery image"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          {[1, 2].map((index) => (
+            <div
+              key={index}
+              className="aspect-[2/1] bg-gray-200 relative cursor-pointer"
+              onClick={() => setLightboxIndex(index)}
+            >
               <img
                 src={displayImages[index]}
                 alt={`Gallery image ${index + 1}`}
                 className="absolute inset-0 w-full h-full object-cover"
               />
-            ) : (
-              <ImagePlaceholder size="small" />
-            )}
+            </div>
+          ))}
+        </div>
+      ) : displayImages.length === 4 ? (
+        <div className="hidden sm:grid grid-cols-4 gap-2 mb-8 rounded-xl overflow-hidden">
+          <div
+            className="col-span-2 row-span-2 aspect-square bg-gray-200 relative cursor-pointer"
+            onClick={() => setLightboxIndex(0)}
+          >
+            <img
+              src={displayImages[0]}
+              alt="Main gallery image"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
           </div>
-        ))}
-      </div>
+          {[1, 2].map((index) => (
+            <div
+              key={index}
+              className="aspect-square bg-gray-200 relative cursor-pointer"
+              onClick={() => setLightboxIndex(index)}
+            >
+              <img
+                src={displayImages[index]}
+                alt={`Gallery image ${index + 1}`}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          ))}
+          <div
+            className="col-span-2 aspect-[2/1] bg-gray-200 relative cursor-pointer"
+            onClick={() => setLightboxIndex(3)}
+          >
+            <img
+              src={displayImages[3]}
+              alt="Gallery image 4"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="hidden sm:grid grid-cols-4 gap-2 mb-8 rounded-xl overflow-hidden">
+          <div
+            className="col-span-2 row-span-2 aspect-square bg-gray-200 relative cursor-pointer"
+            onClick={() => setLightboxIndex(0)}
+          >
+            <img
+              src={displayImages[0]}
+              alt="Main gallery image"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          {[1, 2, 3, 4].map((index) => {
+            const extraCount = displayImages.length - 5;
+            const isLast = index === 4;
+            return (
+              <div
+                key={index}
+                className="aspect-square bg-gray-200 relative cursor-pointer"
+                onClick={() => setLightboxIndex(index)}
+              >
+                <img
+                  src={displayImages[index]}
+                  alt={`Gallery image ${index + 1}`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {isLast && extraCount > 0 && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-semibold text-lg">
+                    +{extraCount}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── Lightbox Preview ─────────────────────────────────────────────── */}
+      {mounted && lightboxIndex !== null && hasImages && createPortal(
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            aria-label="Close preview"
+            className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {displayImages.length > 1 && (
+            <>
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  showPrev();
+                }}
+                aria-label="Previous image"
+                className="absolute left-2 sm:left-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={(event) => {
+                  event.stopPropagation();
+                  showNext();
+                }}
+                aria-label="Next image"
+                className="absolute right-2 sm:right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
+
+          <img
+            src={displayImages[lightboxIndex]}
+            alt={`Gallery image ${lightboxIndex + 1}`}
+            onClick={(event) => event.stopPropagation()}
+            className="max-w-[92vw] max-h-[85vh] object-contain select-none"
+          />
+
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white/10 text-white text-sm font-medium pointer-events-none">
+            {lightboxIndex + 1}/{displayImages.length}
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   );
 };
