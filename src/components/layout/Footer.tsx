@@ -73,19 +73,6 @@ const Footer = () => {
             <span>Instagram</span>
           </a>
           <a
-            href="https://www.facebook.com/profile.php?id=61567257834764#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-white mt-2 hover:text-gray-300 transition-colors cursor-pointer"
-          >
-            <img
-              src="/assets/icons/facebook.svg"
-              alt="Facebook"
-              className="w-6 h-6 mr-4 flex-shrink-0"
-            />
-            <span>Facebook</span>
-          </a>
-          <a
             href="https://www.tiktok.com/@dooinngs"
             target="_blank"
             rel="noopener noreferrer"
