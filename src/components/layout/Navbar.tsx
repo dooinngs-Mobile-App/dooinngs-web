@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#E41C4C] sticky top-0 z-50">
+    <div data-navbar className="bg-[#E41C4C] sticky top-0 z-50">
       {/* Navbar */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4 sm:py-5 lg:py-6">
