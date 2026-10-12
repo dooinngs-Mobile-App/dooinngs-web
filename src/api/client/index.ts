@@ -90,4 +90,56 @@ export const getPublicBusiness = {
   },
 };
 
+export interface MarketplaceBusiness {
+  id: string;
+  business_name: string;
+  profession: string;
+  service_cost: string;
+  reviews_rating: { average: number; count: number };
+  location: { street_address: string; city: string };
+  business_images: { image_url: string; thumbnail_url: string }[];
+  share_link: string;
+}
+
+export interface BusinessSearchResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: MarketplaceBusiness[];
+}
+
+export interface Coords {
+  latitude: number;
+  longitude: number;
+}
+
+export const BUSINESS_SEARCH_PAGE_SIZE = 12;
+
+export const searchBusinesses = {
+  key: (search: string, profession: string, coords: Coords | null, page: number) => [
+    "businessSearch",
+    search,
+    profession,
+    coords,
+    page,
+  ],
+  // coords → API orders results by distance, closest first
+  fn: async (search: string, profession: string, coords: Coords | null, page: number) => {
+    const { data } = await axios.get<BusinessSearchResponse>(
+      "/api/business/search",
+      {
+        params: {
+          search: search || undefined,
+          profession: profession || undefined,
+          latitude: coords?.latitude,
+          longitude: coords?.longitude,
+          page,
+          page_size: BUSINESS_SEARCH_PAGE_SIZE,
+        },
+      },
+    );
+    return data;
+  },
+};
+
 export default apiClient;
